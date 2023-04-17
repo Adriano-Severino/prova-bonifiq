@@ -1,10 +1,9 @@
 ﻿using ProvaPub.Models;
 using ProvaPub.Services.Interface;
-using System.Drawing;
 
 namespace ProvaPub.Services
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         private readonly IPayment _payment;
         public OrderService(IPayment payment)
@@ -18,7 +17,23 @@ namespace ProvaPub.Services
 
             return await Task.FromResult(new Order()
             {
+                CustomerId = customerId,
+                OrderDate = DateTime.Now,
                 Value = paymentValue,
+                Customer = new Customer()
+                {
+                    Id = customerId,
+                    Name = "Teste",
+                    Orders = new List<Order>()
+                    {
+                        new Order()
+                        {
+                            CustomerId = customerId,
+                            OrderDate = DateTime.Now,
+                            Value = paymentValue
+                        }
+                    }
+                }
             });
         }
     }
