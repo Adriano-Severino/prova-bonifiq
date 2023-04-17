@@ -2,8 +2,12 @@
 {
 	public class CustomerList
 	{
-		public List<Customer> Customers { get; set; }
-		public int TotalCount { get; set; }
-		public bool HasNext { get; set; }
-	}
+        public CustomerList(Pagination pagination, List<Customer> customers)
+        {
+            Customers = customers;
+            Pagination = pagination;
+        }
+        public List<Customer> Customers { get; set; }
+        public Pagination Pagination { get; set; }
+    }
 }

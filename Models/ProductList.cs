@@ -2,8 +2,15 @@
 {
 	public class ProductList
 	{
-		public List<Product> Products { get; set; }
-		public int TotalCount { get; set; }
-		public bool HasNext { get; set; }
-	}
+        private object customers;
+
+        public ProductList(Pagination pagination, List<Product> products)
+        {
+            Pagination = pagination;
+            Products = products;
+        }
+
+        public List<Product> Products { get; set; }
+        public Pagination Pagination { get; set; }
+    }
 }
